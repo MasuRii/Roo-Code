@@ -155,5 +155,30 @@
 		},
 		"deleteMode": "Delete mode"
 	},
+	"scm": {
+		"selectProvider": {
+			"placeholder": "Choose the AI provider for generating commit messages",
+			"rooLabel": "Generate Commit Message with Roo",
+			"rooDescription": "Use Roo AI for commit messages",
+			"copilotLabel": "Generate Commit Message with Copilot",
+			"copilotDescription": "Use Copilot for commit messages"
+		},
+		"progress": {
+			"roo": "Roo: Generating commit message...",
+			"copilot": "Copilot: Generating commit message..."
+		},
+		"info": {
+			"providerSetRoo": "Commit message provider set to Roo.",
+			"providerSetCopilot": "Commit message provider set to Copilot."
+		},
+		"warning": {
+			"rooFailed": "Roo could not generate a commit message.",
+			"copilotFailed": "Copilot could not generate a commit message."
+		},
+		"error": {
+			"rooGeneric": "Error generating commit message with Roo: {{message}}",
+			"copilotGeneric": "Error generating commit message with Copilot: {{message}}"
+		}
+	},
 	"allFiles": "all files"
 }

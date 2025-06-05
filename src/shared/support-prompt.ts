@@ -43,6 +43,8 @@ type SupportPromptType =
 	| "TERMINAL_FIX"
 	| "TERMINAL_EXPLAIN"
 	| "NEW_TASK"
+	| "GENERATE_COMMIT_ROO"
+	| "GENERATE_COMMIT_COPILOT"
 
 const supportPromptConfigs: Record<SupportPromptType, SupportPromptConfig> = {
 	ENHANCE: {
@@ -133,6 +135,26 @@ Please provide:
 	},
 	NEW_TASK: {
 		template: `\${userInput}`,
+	},
+	GENERATE_COMMIT_ROO: {
+		template: `As Roo AI, generate a concise and descriptive Git commit message based on the following staged changes and existing input.
+Current branch: \${branchName}
+User input (if any): \${currentCommitInput}
+Staged changes:
+\`\`\`diff
+\${stagedDiff}
+\`\`\`
+Commit message (reply with only the commit message):`,
+	},
+	GENERATE_COMMIT_COPILOT: {
+		template: `Generate a concise and descriptive Git commit message in the style of GitHub Copilot based on the following staged changes and existing input.
+Current branch: \${branchName}
+User input (if any): \${currentCommitInput}
+Staged changes:
+\`\`\`diff
+\${stagedDiff}
+\`\`\`
+Commit message (reply with only the commit message):`,
 	},
 } as const
 

@@ -45,9 +45,13 @@
 		"roo code",
 		"roocode"
 	],
+	"enabledApiProposals": [
+		"contribSourceControlInputBoxMenu"
+	],
 	"activationEvents": [
 		"onLanguage",
-		"onStartupFinished"
+		"onStartupFinished",
+		"onView:workbench.view.scm"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -165,6 +169,24 @@
 				"command": "roo-cline.acceptInput",
 				"title": "%command.acceptInput.title%",
 				"category": "%configuration.title%"
+			},
+			{
+				"command": "roo-cline.generateCommitWithRoo",
+				"title": "Generate Commit Message (Roo)",
+				"category": "Roo Code",
+				"icon": "assets/icons/icon.svg"
+			},
+			{
+				"command": "roo-cline.generateCommitWithCopilot",
+				"title": "Generate Commit Message (Copilot)",
+				"category": "Roo Code",
+				"icon": "$(sparkle)"
+			},
+			{
+				"command": "roo-cline.selectCommitProvider",
+				"title": "Select Commit Message Provider",
+				"category": "Roo Code",
+				"icon": "$(chevron-down)"
 			}
 		],
 		"menus": {
@@ -281,6 +303,22 @@
 					"group": "navigation@7",
 					"when": "activeWebviewPanelId == roo-cline.TabPanelProvider"
 				}
+			],
+			"scm/inputBox": [
+				{
+					"command": "roo-cline.generateCommitWithCopilot",
+					"when": "config.roo-cline.commitMessageProvider == 'copilot' || !config.roo-cline.commitMessageProvider",
+					"group": "navigation@1"
+				},
+				{
+					"command": "roo-cline.generateCommitWithRoo",
+					"when": "config.roo-cline.commitMessageProvider == 'roo'",
+					"group": "navigation@1"
+				},
+				{
+					"command": "roo-cline.selectCommitProvider",
+					"group": "navigation@2"
+				}
 			]
 		},
 		"submenus": [
@@ -334,6 +372,16 @@
 					"type": "boolean",
 					"default": false,
 					"description": "%settings.rooCodeCloudEnabled.description%"
+				},
+				"roo-cline.commitMessageProvider": {
+					"type": "string",
+					"enum": [
+						"copilot",
+						"roo"
+					],
+					"default": "copilot",
+					"description": "Select the AI provider for generating commit messages in the SCM panel.",
+					"scope": "window"
 				}
 			}
 		}
